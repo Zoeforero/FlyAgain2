@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
+import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { selectPlaceOrigin, selectPlaceDestiny } from '../actions/indexActions';
 
@@ -15,14 +17,18 @@ const options = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+  paper: {
+    marginTop: theme.spacing(8),
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+  form: {
+    width: '100%',
+    margin: theme.spacing(1),
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -48,70 +54,84 @@ const Home = (props) => {
   };
 
   return (
-    <div>
-      <section>
-        <h1>Búsqueda Vuelos</h1>
-        <form method='get'>
-          <Select
-            name='origin'
-            value={lugar1}
-            onChange={handleChangeOrigin}
-            options={options}
-            placeholder='¿Desde dónde?'
-          />
-          <Select
-            name='destiny'
-            value={lugar2}
-            onChange={handleChangeDestiny}
-            options={options}
-            placeholder='¿A dónde quieres ir?'
-          />
-          <div className={classes.container}>
-            <TextField
-              id='date1'
-              name='date1'
-              label='Fecha de salida'
-              type='date'
-              defaultValue={undefined}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
+    <Container component='main' maxWidth='xs'>
+      <div className={classes.paper}>
+        <section>
+          <Typography component='h1' variant='h5'>
+            Búsqueda vuelos
+          </Typography>
+          <form method='get'>
+            <Select
+              name='origin'
+              value={lugar1}
+              onChange={handleChangeOrigin}
+              options={options}
+              placeholder='¿Desde dónde?'
             />
-          </div>
-          <div className={classes.container}>
-            <TextField
-              id='date2'
-              name='date2'
-              label='Fecha de regreso'
-              type='date'
-              defaultValue={undefined}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
+            <Select
+              name='destiny'
+              value={lugar2}
+              onChange={handleChangeDestiny}
+              options={options}
+              placeholder='¿A dónde quieres ir?'
             />
-          </div>
-          <Button variant='contained' color='primary' type='submit' onClick={buscandoVuelos}>Buscar</Button>
-        </form>
-      </section>
-      <section>
-        <h3>{vuelosEncontrados.length > 0 ? 'Vuelo encontrado' : 'Sin vuelos'}</h3>
-        {vuelosEncontrados.length > 0 && (
-          <ul>
-            <li>
-              {`Origen: ${vuelosEncontrados[0].origin}`}
-            </li>
-            <li>
-              {`Destino: ${vuelosEncontrados[0].destiny}`}
-            </li>
-            <li>
-              {`Fecha de vuelo: ${vuelosEncontrados[0].date}`}
-            </li>
-          </ul>
-        )}
-      </section>
-    </div>
+            <div className={classes.container}>
+              <TextField
+                id='date1'
+                name='date1'
+                label='Fecha de salida'
+                type='date'
+                margin='normal'
+                defaultValue={undefined}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </div>
+            <div className={classes.container}>
+              <TextField
+                id='date2'
+                name='date2'
+                label='Fecha de regreso'
+                type='date'
+                margin='normal'
+                defaultValue={undefined}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </div>
+            <Button
+              variant='contained'
+              color='primary'
+              type='submit'
+              onClick={buscandoVuelos}
+              className={classes.submit}
+            >
+              Buscar
+            </Button>
+          </form>
+        </section>
+        <section>
+          <h3>{vuelosEncontrados.length > 0 ? 'Vuelo encontrado' : 'Sin vuelos'}</h3>
+          {vuelosEncontrados.length > 0 && (
+            <ul>
+              <li>
+                {`Origen: ${vuelosEncontrados[0].origin}`}
+              </li>
+              <li>
+                {`Destino: ${vuelosEncontrados[0].destiny}`}
+              </li>
+              <li>
+                {`Fecha de vuelo: ${vuelosEncontrados[0].date}`}
+              </li>
+            </ul>
+          )}
+        </section>
+      </div>
+    </Container>
   );
 };
 
