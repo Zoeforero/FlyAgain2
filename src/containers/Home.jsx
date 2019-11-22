@@ -97,10 +97,23 @@ const Home = (props) => {
       </section>
       <section>
         <h3>{vuelosEncontrados.length > 0 ? 'Vuelo encontrado' : 'Sin vuelos'}</h3>
+        {vuelosEncontrados.length > 0 && (
+          <ul>
+            <li>
+              {`Origen: ${vuelosEncontrados[0].origin}`}
+            </li>
+            <li>
+              {`Destino: ${vuelosEncontrados[0].destiny}`}
+            </li>
+            <li>
+              {`Fecha de vuelo: ${vuelosEncontrados[0].date}`}
+            </li>
+          </ul>
+        )}
       </section>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   lugar1: state.placeOrigin,
@@ -113,4 +126,4 @@ const mapDispatchToProps = {
   selectPlaceDestiny,
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
