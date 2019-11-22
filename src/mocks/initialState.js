@@ -5,7 +5,7 @@ const initialState = {
     {
       origin: 'Bogotá',
       destiny: 'Medellín',
-      date: '2019-11-01',
+      date: '2019-11-23',
     },
     {
       origin: 'Bogotá',
@@ -15,22 +15,27 @@ const initialState = {
     {
       origin: 'Bogotá',
       destiny: 'Barranquilla',
-      date: '2019-12-11',
+      date: '2019-11-25',
     },
     {
       origin: 'Bogotá',
       destiny: 'Ibagué',
-      date: '2019-12-22',
+      date: '2019-11-26',
     },
     {
       origin: 'Cartagena',
       destiny: 'Ibagué',
-      date: '2019-12-23',
+      date: '2019-11-27',
     },
     {
       origin: 'Medellín',
       destiny: 'Cartagena',
       date: '2019-11-23',
+    },
+    {
+      origin: 'Barranquilla',
+      destiny: 'Medellín',
+      date: '2019-11-22',
     },
   ],
 };
