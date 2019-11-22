@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { selectPlaceOrigin, selectPlaceDestiny } from "../actions/indexActions";
+import { selectPlaceOrigin, selectPlaceDestiny } from '../actions/indexActions';
 
 const options = [
   { value: 'Medellín', label: 'Medellín' },
@@ -14,7 +14,7 @@ const options = [
   { value: 'Ibagué', label: 'Ibagué' },
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -28,45 +28,50 @@ const useStyles = makeStyles(theme => ({
 
 const Home = (props) => {
   const classes = useStyles();
+  const { lugar1, lugar2, listaVuelos } = props;
+
   const [vuelosEncontrados, setVuelosEncontrados] = React.useState([]);
+
   const handleChangeOrigin = (option) => {
     props.selectPlaceOrigin(option);
   };
+
   const handleChangeDestiny = (option) => {
     props.selectPlaceDestiny(option);
   };
-  const buscandoVuelos = (event) =>{
+
+  const buscandoVuelos = (event) => {
     event.preventDefault();
-    setVuelosEncontrados(props.listaVuelos.filter((vuelo)=>vuelo.origin === props.lugar1.value));
-    console.log(vuelosEncontrados);
-    setVuelosEncontrados(vuelosEncontrados.filter((vuelo)=>vuelo.destiny === props.lugar2.value));
-    console.log(vuelosEncontrados);
+    let temp = listaVuelos.filter((vuelo) => vuelo.origin === props.lugar1.value);
+    temp = temp.filter((vuelo) => vuelo.destiny === props.lugar2.value);
+    setVuelosEncontrados(temp);
   };
+
   return (
     <div>
       <section>
         <h1>Búsqueda Vuelos</h1>
-        <form method="get">
+        <form method='get'>
           <Select
-            name="origin"
-            value={props.lugar1}
+            name='origin'
+            value={lugar1}
             onChange={handleChangeOrigin}
             options={options}
-            placeholder="¿Desde dónde?"
+            placeholder='¿Desde dónde?'
           />
           <Select
-            name="destiny"
-            value={props.lugar2}
+            name='destiny'
+            value={lugar2}
             onChange={handleChangeDestiny}
             options={options}
-            placeholder="¿A dónde quieres ir?"
+            placeholder='¿A dónde quieres ir?'
           />
           <div className={classes.container}>
             <TextField
-              id="date1"
-              name="date1"
-              label="Fecha de salida"
-              type="date"
+              id='date1'
+              name='date1'
+              label='Fecha de salida'
+              type='date'
               defaultValue={undefined}
               className={classes.textField}
               InputLabelProps={{
@@ -76,10 +81,10 @@ const Home = (props) => {
           </div>
           <div className={classes.container}>
             <TextField
-              id="date2"
-              name="date2"
-              label="Fecha de regreso"
-              type="date"
+              id='date2'
+              name='date2'
+              label='Fecha de regreso'
+              type='date'
               defaultValue={undefined}
               className={classes.textField}
               InputLabelProps={{
@@ -87,11 +92,11 @@ const Home = (props) => {
               }}
             />
           </div>
-          <Button variant="contained" color="primary" type="submit" onClick={buscandoVuelos}>Buscar</Button>
+          <Button variant='contained' color='primary' type='submit' onClick={buscandoVuelos}>Buscar</Button>
         </form>
       </section>
       <section>
-        <h3>{vuelosEncontrados.length >0 ? "Vuelo encontrado" : "Sin vuelos"}</h3>
+        <h3>{vuelosEncontrados.length > 0 ? 'Vuelo encontrado' : 'Sin vuelos'}</h3>
       </section>
     </div>
   );
@@ -105,6 +110,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   selectPlaceOrigin,
-  selectPlaceDestiny
-}
+  selectPlaceDestiny,
+};
+
 export default connect(mapStateToProps,mapDispatchToProps)(Home);
