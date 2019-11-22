@@ -16,11 +16,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function Calendar(props) {
   const classes = useStyles();
-
   return (
     <div className={classes.container}>
       <TextField
-        id="date"
+        id={props.id}
         label={props.label}
         type="date"
         defaultValue={undefined}
