@@ -3,15 +3,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
@@ -34,54 +32,57 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles();
-
+  const refrescar = (event) => {
+    event.preventDefault();
+  };
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Iniciar sesión
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            id="email"
-            label="Correo electrónico"
-            name="email"
+            id='email'
+            label='Correo electrónico'
+            name='email'
           />
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            name="password"
-            label="Contraseña"
-            type="password"
-            id="password"
+            name='password'
+            label='Contraseña'
+            type='password'
+            id='password'
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Mantener la sesión iniciada"
+            control={<Checkbox value='remember' color='primary' />}
+            label='Mantener la sesión iniciada'
           />
           <Button
-            type="submit"
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
+            onClick={refrescar}
             className={classes.submit}
           >
             Ingresar
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to='/' variant='body2'>
                 Olvidó su contraseña?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to='/register' variant='body2'>
                 No tienes cuenta? Registrate
               </Link>
             </Grid>

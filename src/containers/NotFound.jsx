@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -22,14 +22,27 @@ export default function StickyFooter() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container component="main" className={classes.main} maxWidth="sm">
-        <Typography variant="h2"  gutterBottom align="center">
+      <Container
+        component='main'
+        className={classes.main}
+        maxWidth='sm'
+      >
+        <Typography
+          variant='h2'
+          gutterBottom
+          align='center'
+        >
           404
         </Typography>
-        <Typography variant="h5" component="h2" gutterBottom align="center">
+        <Typography
+          variant='h5'
+          component='h2'
+          gutterBottom
+          align='center'
+        >
           Página no encontrada
         </Typography>
-        <Typography variant="body1" align="center">:(</Typography>
+        <Typography variant='body1' align='center'>:(</Typography>
       </Container>
     </div>
   );
