@@ -72,8 +72,11 @@ export default function SignIn() {
             color='primary'
             onClick={refrescar}
             className={classes.submit}
+          >          
+          <Link to='/home'
           >
             Ingresar
+          </Link>
           </Button>
           <Grid container>
             <Grid item xs>
